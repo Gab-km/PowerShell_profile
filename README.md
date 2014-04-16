@@ -1,4 +1,4 @@
-PowerShell_profile
+PowerShell profile
 ==================
 
-A repository for my PowerShell profile
+This is a repository for my PowerShell profile.
