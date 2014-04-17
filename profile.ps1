@@ -20,10 +20,11 @@ $ "
 # 認証プロキシ用に適切なプロキシを取得する
 function Get-RequiredProxy {
 param(
+    [Parameter(Mandatory=$true)]
     [System.Uri]$proxyUri
 )
+    $proxy = New-Object System.Net.WebProxy($proxyUri) -ErrorAction Stop
     $cred = Get-Credential
-    $proxy = New-Object System.Net.WebProxy($proxyUri)
     $proxy.credentials = $cred.GetNetworkCredential()
     $proxy
 }
