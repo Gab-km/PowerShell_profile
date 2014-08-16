@@ -1,11 +1,13 @@
 ﻿# $HOME の値を環境変数の HOME に変更する
-Remove-Variable -Force HOME
+Remove-Variable -Force HOME 2>$null
 Set-Variable HOME $env:HOME
 
 # Git 管理ディレクトリ
 function git_branch {
-    git branch 2>$null | % { $bn = $_.Split()[1]
-                             Write-Output "(git:$bn)" }
+    git branch 2>$null |
+    where { -not [System.String]::IsNullOrEmpty($_.Split()[0]) } |
+    % { $bn = $_.Split()[1]
+        Write-Output "(git:$bn)" }
 }
 
 # Mercurial 管理ディレクトリ
