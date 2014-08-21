@@ -5,7 +5,7 @@ Set-Variable HOME $env:HOME
 # Git 管理ディレクトリ
 function git_branch {
     git branch 2>$null |
-    where { -not [System.String]::IsNullOrEmpty($_.Split()[0]) } |
+    where { -not [System.String]::IsNullOrWhiteSpace($_.Split()[0]) } |
     % { $bn = $_.Split()[1]
         Write-Output "(git:$bn)" }
 }
